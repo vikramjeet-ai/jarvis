@@ -48,10 +48,10 @@ def speak(text, allow_interruption=False):
 def listen():
     with sr.Microphone() as source:
         recognizer.adjust_for_ambient_noise(source)
-        print("🎤 Listening...")
+        print(" Listening...")
         audio = recognizer.listen(source)
     try:
-        print("🔍 Recognizing...")
+        print(" Recognizing...")
         query = recognizer.recognize_google(audio)
         print("You said:", query)
         return query
@@ -80,13 +80,13 @@ def chat_with_deepseek(prompt):
         if response.status_code == 200:
             result = response.json()
             raw_answer = result["choices"][0]["message"]["content"]
-            print("🧠 AI Raw Response:", raw_answer)
+            print(" AI Raw Response:", raw_answer)
             return clean_response(raw_answer)
         else:
-            print("❌ API Error:", response.status_code, response.text)
+            print(" API Error:", response.status_code, response.text)
             return "Sorry, I couldn't get a response from the AI."
     except Exception as e:
-        print("❌ Exception:", str(e))
+        print(" Exception:", str(e))
         return "There was a problem connecting to the AI."
 
 # 💻 Control Functions
@@ -117,7 +117,7 @@ if __name__ == "__main__":
     speak("Hello, I am Jarvis. Say 'Jarvis' to activate me.", allow_interruption=False)
 
     while True:
-        print("🕒 Waiting for wake word 'Jarvis'...")
+        print(" Waiting for wake word 'Jarvis'...")
         wake_input = listen()
 
         if wake_input and "jarvis" in wake_input.lower():
